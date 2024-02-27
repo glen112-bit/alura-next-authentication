@@ -1,6 +1,6 @@
+import { withSession } from '../src/services/auth/session.js'
 
-
-function AuthPageServer(props) {
+function AuthPageSSR(props) {
   return (
     <>
       <div>
@@ -12,4 +12,15 @@ function AuthPageServer(props) {
     </>
   )
 }
-export default AuthPageServer
+export default AuthPageSSR
+
+export const getServerSideProps = withSession((ctx) => {
+  console.log(ctx.req.session);
+
+  return {
+    props: {
+      session: ctx.req.session,
+    }
+  }
+})
+
