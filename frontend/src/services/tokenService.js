@@ -18,6 +18,7 @@ export const tokenService = {
   },
   get(ctx = null){
     const cookies = nookies.get(ctx);
+    // console.log(cookies);
     return cookies[ACCESS_TOKEN_KEY] || '';
     // return globalThis?.localStorage?.getItem(ACCESS_TOKEN_KEY, accessToken);
   // return globalThis?.sessionStorage.getItem(ACCESS_TOKEN_KEY, accessToken);

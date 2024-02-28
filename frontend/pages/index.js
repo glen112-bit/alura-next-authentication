@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { authService } from '../src/services/auth/authService.js'
+import Link from 'next/link';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -29,8 +30,8 @@ export default function HomeScreen() {
             password: values.senha,
           })
           .then(() => {
-            router.push('/auth-page-ssr');
-            // router.push('/auth-page-static');
+            // router.push('/auth-page-ssr');
+            router.push('/auth-page-static');
           }) 
           .catch(() => {
             alert('usuario o senha invalida')
@@ -55,6 +56,12 @@ export default function HomeScreen() {
           </button>
         </div>
       </form>
+      <Link href={'/auth-page-ssr'}>
+        <div>ssr</div>
+      </Link>
+      <Link href={'/auth-page-static'}>
+        <div>static</div>
+      </Link>
     </div>
   );
 }
