@@ -22,7 +22,7 @@ function AuthPageSSR(props) {
 export default AuthPageSSR
 
 export const getServerSideProps = withSession((ctx) => {
-  console.log(ctx.req.session);
+  // console.log(ctx.req.session);
 
   return {
     props: {

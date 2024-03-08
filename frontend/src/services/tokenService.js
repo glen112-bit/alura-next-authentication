@@ -8,19 +8,20 @@ const ONE_DAY = ONE_HOUR * 24;
 const ONE_YEAR = ONE_DAY * 365;
 
 export const tokenService = {
-  save( accessToken, ctx = null ){
-    globalThis?.localStorage?.setItem(ACCESS_TOKEN_KEY, accessToken)
-    globalThis?.sessionStorage?.setItem(ACCESS_TOKEN_KEY, accessToken)    
-    nookies.set(ctx, ACCESS_TOKEN_KEY, accessToken, {
+  save( access_token, ctx = null ){
+    globalThis?.localStorage?.setItem(ACCESS_TOKEN_KEY, access_token)
+    globalThis?.sessionStorage?.setItem(ACCESS_TOKEN_KEY, access_token)    
+    nookies.set(ctx, ACCESS_TOKEN_KEY, access_token, {
       maxAge: ONE_YEAR,
       path: '/',
     })
   },
+
   get(ctx = null){
     const cookies = nookies.get(ctx);
-    // console.log(cookies);
+    console.log('cookies: ', cookies);
     return cookies[ACCESS_TOKEN_KEY] || '';
-    // return globalThis?.localStorage?.getItem(ACCESS_TOKEN_KEY, accessToken);
+    // return globalThis?.localStorage?.getItem(ACCESS_TOKEN_KEY, access_token);
   // return globalThis?.sessionStorage.getItem(ACCESS_TOKEN_KEY, accessToken);
   },
   delete(){

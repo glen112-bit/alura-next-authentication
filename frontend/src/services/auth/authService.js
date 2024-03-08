@@ -13,7 +13,7 @@ export const authService = {
       const body = serviceAnswer.body;
       // console.log(body.data.access_token);
       tokenService.save(body.data.access_token);
-        // console.log(token);
+        // console.log(body);
       return body
     })
 
@@ -26,18 +26,22 @@ export const authService = {
           refresh_token
         }
       })
-      console.log(response);
+      // console.log(response);
     })
   },
-
+  
   async getSession(ctx = null) {
     const token = tokenService.get(ctx);
+
     return HttpClient(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/session`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
-    }).then((response) => {
+      // ctx,
+      // refresh: true,
+    })
+      .then((response) => {
       if (!response.ok) throw new Error("no autorizado");
       return response.body.data;
     });
